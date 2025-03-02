@@ -1,0 +1,42 @@
+services:
+  regapp-api:
+    build: .
+    container_name: 'regapp-api'
+    image: regapp-api
+    restart: unless-stopped
+    ports:
+      - "9800:9800"
+    depends_on:
+      - reg-database
+    networks:
+      - local-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=localdeploy
+      - JAVA_OPTS= -Xms128m -Xmx256m
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256m
+        reservations:
+          cpus: '0.5'
+          memory: 128M
+  reg-database:
+    image: mysql:8.0.38
+    container_name: local-mysql
+    hostname: local-mysql
+    ports:
+      - "3320:3306"
+    networks:
+      - local-network
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./src/main/resources/db/databaseconfig.sql:/docker-entrypoint-initdb.d/databaseconfig.sql
+      - ./db/opt/mysql-data/data:/var/lib/mysql
+      - ./db/opt/mysql-data/files:/var/lib/mysql-files
+networks:
+  local-network:
+    external: false
+    name: local-network

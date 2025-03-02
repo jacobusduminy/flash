@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "0bf7982f-d4bc-409a-a234-182a62bfd034",
+		"name": "New Regapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17772178"
+	},
+	"item": [
+		{
+			"name": "CreateCurl",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jacobus\",\r\n    \"surname\": \"duminy\",\r\n    \"password\": \"12345\",\r\n    \"email\": \"jddkduminy@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9800/regapp/api/controller/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9800",
+					"path": [
+						"regapp",
+						"api",
+						"controller",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResetPassword",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jacobus\",\r\n    \"surname\": \"duminy\",\r\n    \"email\": \"jddkduminy@gmail.com\",\r\n    \"password\": \"1234password1234\",\r\n    \"passwordResetCode\": \"d5b1ee4b-463d-37db-bb0e-aaa0ea2cb5b4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9800/regapp/api/controller/passwordrest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9800",
+					"path": [
+						"regapp",
+						"api",
+						"controller",
+						"passwordrest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StarAdd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userDto\": {\r\n    \"username\": \"jacobus\",\r\n    \"surname\": \"duminy\",\r\n    \"password\": \"12345\",\r\n    \"email\": \"jddkduminy@gmail.com\"\r\n},\r\n\"comment\":\"The software's APPLICATION required immediate ACTION to SELECT the appropriate data, despite the CONSTRAINTS imposed by the GLOBAL system limitations, ensuring a streamlined workflow for all users.\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9800/regapp/api/controller/star",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9800",
+					"path": [
+						"regapp",
+						"api",
+						"controller",
+						"star"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9800/regapp/api/controller/login?email=jddkduminy@gmail.com&password=12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9800",
+					"path": [
+						"regapp",
+						"api",
+						"controller",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "jddkduminy@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchUser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9800/regapp/api/controller/user?email=jddkduminy@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9800",
+					"path": [
+						"regapp",
+						"api",
+						"controller",
+						"user"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "jddkduminy@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

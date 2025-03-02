@@ -1,0 +1,101 @@
+server:
+  port: 9800
+  servlet:
+    context-path: /regapp
+api:
+  base:
+    url:
+      pattern: /api/**
+
+spring:
+  application:
+    name: REGAPP
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+          batch_versioned_data: true
+        order_updates: true
+        show_sql: false
+        connection:
+          pool_size: 20
+          driver_class: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    metrics:
+      enabled: true
+    pause:
+      enabled: true
+    restart:
+      enabled: true
+    refresh:
+      enabled: true
+    loggers:
+      enabled: true
+    health:
+      show-details: always
+    configprops:
+      show-values: always
+    env:
+      show-values: always
+      post:
+        enabled: true
+    logfile:
+      enabled: true
+    startup:
+      enabled: true
+    resume:
+      enabled: true
+    conditions:
+      enabled: true
+    shutdown:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure.jdbc: info
+    org.hibernate: false
+
+properties:
+  starwords: "APPLICATION,ACTION,SELECT,CONSTRAINTS,GLOBAL"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3320/regapp_database?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&allowPublicKeyRetrieval=true
+    username: regapp_user
+    password: regapp_user
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: localdeploy
+  datasource:
+    url: jdbc:mysql://local-mysql:3306/regapp_database?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&allowPublicKeyRetrieval=true
+    username: regapp_user
+    password: regapp_user
+
+---
